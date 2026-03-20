@@ -1,3 +1,3 @@
-const defaults = { theme: "light", fontSize: 14 };
-const prefs = Object.assign({}, defaults, { theme: "dark" });
-console.log(prefs)
+const proto = { sayHi() { return "hi"; } };
+const obj = Object.create(proto);
+console.log(obj); // "hi"

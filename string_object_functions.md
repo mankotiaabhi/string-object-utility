@@ -93,13 +93,6 @@ user.city = "NY";   // add a property
 delete user.city;     // remove a property
 ```
 
-#### `Object.create(proto)`
-```js
-const proto = { sayHi() { return "hi"; } };
-const obj = Object.create(proto);
-console.log(obj.sayHi()); // "hi"
-```
-
 ### Popular object utility methods
 
 #### `Object.keys(obj)`
