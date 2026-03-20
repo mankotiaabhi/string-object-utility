@@ -128,17 +128,13 @@ const prefs = Object.assign({}, defaults, { theme: "dark" });
 // prefs => { theme: "dark", fontSize: 14 }
 ```
 
-#### Deep copy (structuredClone / JSON)
-Creates a deep copy of an object so nested objects/arrays are also cloned. `structuredClone` is the modern built-in API, while `JSON.parse(JSON.stringify(obj))` is a simpler fallback for JSON-safe data.
+#### Deep copy (structuredClone)
+Creates a deep copy of an object so nested objects/arrays are also cloned.
 
 ```js
 const user = { name: "Aisha", prefs: { theme: "dark" } };
 const copy = structuredClone(user);
 copy.prefs.theme = "light";
-console.log(user.prefs.theme); // "dark" (original unchanged)
-
-const jsonCopy = JSON.parse(JSON.stringify(user));
-jsonCopy.prefs.theme = "blue";
 console.log(user.prefs.theme); // "dark" (original unchanged)
 ```
 
