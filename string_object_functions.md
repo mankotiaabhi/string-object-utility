@@ -1,7 +1,5 @@
 # JavaScript String & Object Functions 
 
-**Author:** Abhay Singh Mankotia
-
 ## Strings (immutable)
 Strings are **immutable**: methods return new strings and do not change the original.
 
@@ -60,7 +58,7 @@ console.log("JavaScript".slice(0, 4)); // "Java"
 console.log("JavaScript".slice(4)); // "Script"
 ```
 
-#### `split(separator, limit)`
+#### `split(separator)`
 Splits a string into an array.
 
 ```js
@@ -69,7 +67,7 @@ console.log("hello".split("")); // ["h","e","l","l","o"]
 ```
 
 #### `replace(searchValue, replaceValue)`
-Returns a new string with substitutions.
+Returns a new string with the first occurrence replaced (or all occurrences if using a global regex).
 
 ```js
 console.log("foo bar".replace("foo", "baz")); // "baz bar"
@@ -102,22 +100,34 @@ const obj = Object.create(proto);
 console.log(obj.sayHi()); // "hi"
 ```
 
----
-
 ### Popular object utility methods
 
-### `Object.keys(obj)` / `Object.values(obj)` / `Object.entries(obj)`
-- Useful to iterate keys/values/pairs.
+#### `Object.keys(obj)`
+Returns an array of the object's own enumerable property names (keys).
 
 ```js
 const user = { name: "Aisha", age: 27 };
 console.log(Object.keys(user)); // ["name", "age"]
+```
+
+#### `Object.values(obj)`
+Returns an array of the object's own enumerable property values.
+
+```js
+const user = { name: "Aisha", age: 27 };
 console.log(Object.values(user)); // ["Aisha", 27]
+```
+
+#### `Object.entries(obj)`
+Returns an array of the object's own enumerable property [key, value] pairs.
+
+```js
+const user = { name: "Aisha", age: 27 };
 console.log(Object.entries(user)); // [["name","Aisha"],["age",27]]
 ```
 
-### `Object.assign(target, ...sources)`
-- Shallow copy properties from sources into target.
+#### `Object.assign(target, ...sources)`
+Copies the values of all enumerable own properties from one or more source objects to a target object. It returns the target object. This is commonly used for shallow cloning or merging objects.
 
 ```js
 const defaults = { theme: "light", fontSize: 14 };
@@ -125,20 +135,25 @@ const prefs = Object.assign({}, defaults, { theme: "dark" });
 // prefs => { theme: "dark", fontSize: 14 }
 ```
 
-### `Object.freeze(obj)` / `Object.seal(obj)`
-- Prevent modifications.
+#### `Object.freeze(obj)`
+Freezes an object, preventing new properties from being added to it, existing properties from being removed, and existing properties from being changed. It returns the same object that was passed in.
 
 ```js
 const conf = Object.freeze({ name: "Immutable" });
-conf.name = "X"; // ignored in strict mode throws
+conf.name = "X"; // throws TypeError in strict mode, ignored in non-strict mode
+```
 
+#### `Object.seal(obj)`
+Seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable.
+
+```js
 const sealed = Object.seal({ a: 1 });
 sealed.a = 2; // works
 sealed.b = 3; // ignored
 ```
 
-### `Object.hasOwn(obj, prop)` (ES2022)
-- Checks if a property exists directly on the object (not in prototype).
+#### `Object.hasOwn(obj, prop)` (ES2022)
+Returns a boolean indicating whether the object has the specified property as its own property (not inherited from its prototype chain).
 
 ```js
 const obj = { x: 1 };
